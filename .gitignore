@@ -1,0 +1,62 @@
+# Byte-compiled / optimized Python files
+__pycache__/
+*.py[cod]
+
+# Local development configuration
+instance/
+
+# Environment variables
+.env
+
+# Logs
+*.log
+
+# Database files
+*.db
+
+# Backup files
+*~
+
+# Compiled CSS and JavaScript files
+/static/css/*.css
+/static/js/*.js
+
+# Generated files
+db.sqlite3
+
+# Neovim specific
+*.swp
+*.swo
+*.swn
+*.swm
+*.un~
+*.un~
+*.un
+*.tmp
+*~
+
+# Neovim backup files
+nvim-remote*
+
+# Neovim undo history
+undo/
+
+# Neovim session files
+session.vim
+
+# Neovim view files
+.view
+
+# Neovim tag files
+tags
+
+# Neovim plug files
+plug/
+autoload/plug.vim
+
+# Neovim Language Server Protocol (LSP) logs
+nvim-lsp.log
+
+# Neovim packer.nvim
+packer_compiled.lua
+
