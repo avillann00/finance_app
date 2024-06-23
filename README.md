@@ -8,12 +8,14 @@ This app is made using flask in python. The website tracks finances and gives a 
 
 After making an account and filling out some preliminary data you will get a summary based on the things that you input
 
+It will also make a budget for you and give pointers on how to save
+
 This takes advantage of using SQLAlchemy and some of flask's account management
 
 ### Stocks
 
-Using Beautiful soup, stock prices will be scraped and shown
+Using aplphavantage.co and their api, the latest closing prices for some stocks are extracted
 
 ### Exchange rates
 
-Also using beautiful soup, exchange rates will be scraped and shown
+Using openexchangerates.org and their api, the current exchange rates for some of the worlds currencies are extracted
