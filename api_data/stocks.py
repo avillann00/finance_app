@@ -42,8 +42,8 @@ def get_stocks():
             # print the error code
             print(f'Error: {response.status_code} for ticker {ticker}')
 
-        # sleep to avoid hitting api rate limits
-        time.sleep(120)
+    # sleep to avoid hitting api rate limits
+    time.sleep(120)
 
     # return all of the data
     return info
