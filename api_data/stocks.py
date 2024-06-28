@@ -1,7 +1,5 @@
 # import requests to access api info
 import requests
-# import time to pause the loop
-import time
 
 # gets the stock prices
 def get_stocks():
@@ -9,7 +7,7 @@ def get_stocks():
     # api key
     KEY = 'NC95CRWJ2R1U0MV4'
     # ticker symbols
-    tickers = ['APPL', 'AMZN', 'NVDA', 'CMG', 'TSLA']
+    tickers = ['APPL', 'AMZN', 'NVDA', 'CMG', 'TSLA', 'BAC', 'AAL', 'PFE', 'F', 'RIVN', 'IP', 'CHWY', 'WBA', 'SIRI', 'PLTR']
     # the tickers and their closing price
     info = {}
 
@@ -41,9 +39,6 @@ def get_stocks():
         else:
             # print the error code
             print(f'Error: {response.status_code} for ticker {ticker}')
-
-    # sleep to avoid hitting api rate limits
-    time.sleep(120)
 
     # return all of the data
     return info

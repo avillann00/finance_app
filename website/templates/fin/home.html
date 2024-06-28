@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% block title %}Expenses{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1 class="text-center">Monthly Expenses</h1>
+
+  <!-- Display expenses -->
+  <ul class="list-group list-group-flush" id="expensesList">
+      {% for expense in user.expenses %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{ expense.amount }} - {{ expense.tag }}
+          <form method="POST" action="{{ url_for('views.delete_expense', expense_id=expense.id) }}" style="display:inline;">
+              <button type="submit" class="close" aria-label="Delete" onclick="return confirm('Are you sure you want to delete this expense?');">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </form>
+      </li>
+      {% endfor %}
+  </ul>
+
+  <!-- Button to trigger modal -->
+  <div class="text-center mb-3">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#expenseModal">
+          Add Expense
+      </button>
+  </div>
+
+  <!-- Modal for adding expense -->
+  <div class="modal fade" id="expenseModal" tabindex="-1" role="dialog" aria-labelledby="expenseModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="expenseModalLabel">Add Expense Details</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <!-- Form for adding expense -->
+                  <form id="expenseForm" method="POST" action="{{ url_for('views.add_expense') }}">
+                      <div class="form-group">
+                          <label for="amount">Amount</label>
+                          <input type="number" class="form-control" id="amount" name="amount" step="0.01" placeholder='Enter amount' required>
+                      </div>
+                        <div class="form-group">
+                            <label for="tag">Tag</label>
+                            <input type="text" class="form-control" id="tag" name="tag" placeholder='Enter tag' required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie chart -->
+    <div class="pie-chart-container">
+        <div class="pie-chart" style="--percentage: {{ total_expenses / monthly_income * 100 }}%;">
+            <div class="pie-chart__half pie-chart__half--first"></div>
+            <div class="pie-chart__half pie-chart__half--second"></div>
+            <div class="pie-chart__inner">
+                <div class="pie-chart__label">
+                    Expenses: {{ total_expenses }}
+                </div>
+                <div class="pie-chart__label">
+                    Remaining: {{ monthly_income - total_expenses }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#addExpenseBtn").click(function() {
+            $("#expenseModal").modal('show');
+        });
+
+        $("#expenseForm").on("submit", function() {
+            $("#expenseModal").modal('hide');
+
+            $(this).trigger("reset");
+        });
+});
+</script>
+<style>
+    .expenses-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pie-chart-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pie-chart {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    position: relative;
+    background: conic-gradient(
+        #ff6384 var(--percentage),
+        #36a2eb 0
+    );
+}
+
+.pie-chart__half {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 50%;
+    clip: rect(0, 100px, 200px, 0);
+}
+
+.pie-chart__half--first {
+    background: #ff6384;
+    transform: rotate(calc(var(--percentage) * 3.6deg));
+}
+
+.pie-chart__half--second {
+    background: #36a2eb;
+    transform: rotate(calc(var(--percentage) * 3.6deg));
+}
+
+.pie-chart__inner {
+    width: 120px;
+    height: 120px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pie-chart__label {
+    font-size: 14px;
+    text-align: center;
+}
+
+</style>
+{% endblock %}
+

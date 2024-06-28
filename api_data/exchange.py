@@ -8,7 +8,7 @@ def get_rates():
     # api url
     url = f'https://openexchangerates.org/api/latest.json?app_id={KEY}'
     # all of the currencies
-    currencies = ['CAD', 'USD', 'EUR', 'JPY', 'PHP']
+    currencies = ['CAD', 'EUR', 'JPY', 'PHP', 'GBP', 'AUD', 'CHF', 'HKD']
     # currencies and their rates
     info = {}
 

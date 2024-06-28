@@ -13,10 +13,11 @@ def create_app():
     # app's secret key
     app.config['SECRET_KEY'] = 'hjshjhdjah kjshkjdhjs'
     # database location
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlfinance:///{DB_NAME}'
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     # initialize database
     db.init_app(app)
 
+    # import everything for the app
     from .auth import auth
     from .views import views
     from .models import User, Payment, Expense 

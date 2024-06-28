@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Exchange Rates{% endblock %}
+
+{% block content %}
+<div>Below are the rates for USD to the respective currency</div>
+<div class="card">
+    <div class="card-header">
+        Exchange Rates
+    </div>
+    <div class="card-body">
+        <ul class="list-group">
+            {% for key, value in rates_list.items() %}
+            <li class="list-group-item">
+                <strong>{{ key }}:</strong> {{ value }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
+

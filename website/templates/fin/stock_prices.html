@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Stock Prices{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        Stock Prices
+    </div>
+    <div class="card-body">
+        <ul class="list-group">
+            {% for key, value in stock_list.items() %}
+            <li class="list-group-item">
+                <strong>{{ key }}:</strong> {{ value }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
