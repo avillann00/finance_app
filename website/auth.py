@@ -46,8 +46,8 @@ def sign_up():
         first_name = request.form.get('firstName')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
-        monthly = int(request.form['monthly'])
-        yearly = int(request.form['yearly'])
+        monthly = float(request.form['monthly'])
+        yearly = float(request.form['yearly'])
 
         # error checks
         user = User.query.filter_by(email=email).first()

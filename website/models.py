@@ -24,7 +24,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(150), unique=True) # user email
     password = db.Column(db.String(150)) # user password
     first_name = db.Column(db.String(150)) # user first name
-    monthly = db.Column(db.Integer) # monthly income
-    yearly = db.Column(db.Integer) # yearly income
+    monthly = db.Column(db.Float) # monthly income
+    yearly = db.Column(db.Float) # yearly income
     expenses = db.relationship('Expense')
     payments = db.relationship('Payment')
