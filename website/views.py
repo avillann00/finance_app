@@ -31,7 +31,9 @@ def update_rates():
 
 def update_stocks():
     global stock_list
-    stock_list = stocks.get_stocks()
+    temp = stocks.get_stocks()
+    if temp:
+        stock_list = temp
 
 # initialize the scheduler to update the stock prices and exchange rates
 scheduler = BackgroundScheduler()
